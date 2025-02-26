@@ -80,3 +80,14 @@
 > - install: `poetry add --group dev taskipy`
 >
 > - Doc: [https://github.com/taskipy/taskipy](https://github.com/taskipy/taskipy)
+
+# Instructions to config the code environment
+
+# Mkdocs
+- Comands:
+> * `mkdocs new [dir-name]` - Create a new project.
+> * `mkdocs serve` - Start the live-reloading docs server.
+> * `mkdocs build` - Build the documentation site.
+> * `mkdocs -h` - Print help message and exit.
+- edit mkdocs theme and put mkdocs-material
+- adjust layout for the project
