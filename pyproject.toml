@@ -6,7 +6,7 @@ authors = [
     {name = "Lucas Soares",email = "lucas_1801@yahoo.com.br"}
 ]
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.13,<4.0"
 dependencies = [
     "flask (>=3.1.0,<4.0.0)"
 ]
@@ -14,6 +14,19 @@ dependencies = [
 [tool.poetry]
 packages = [{include = "flask_api", from = "src"}]
 
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.4"
+pytest-cov = "^6.0.0"
+blue = "^0.9.1"
+isort = "^6.0.0"
+taskipy = "^1.14.1"
+
+
+[tool.poetry.group.doc.dependencies]
+mkdocs-material = "^9.6.5"
+mkdocstrings = "^0.28.2"
+mkdocstrings-python = "^1.16.2"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
