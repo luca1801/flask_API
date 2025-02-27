@@ -29,6 +29,21 @@ mkdocs-material = "^9.6.5"
 mkdocstrings = "^0.28.2"
 mkdocstrings-python = "^1.16.2"
 
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts = "--doctest-modules"
+
+[tool.taskipy.tasks]
+lint = "blue --check --diff . && isort --check -- diff ."
+docs = "mkdocs serve"
+pre_test = "task lint"
+test = "pytest -s -x --cov=flask_api -vv"
+post_test = "coverage html"
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"

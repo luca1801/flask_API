@@ -91,3 +91,27 @@
 > * `mkdocs -h` - Print help message and exit.
 - edit mkdocs theme and put mkdocs-material
 - adjust layout for the project
+
+# pytest
+- comand for see tasks: `task -l`
+- add in `pyproject.toml` config for pytest and add doctest in parameters
+> `[tool.pytest.ini_options]`\
+  `pythonpath = "."`\
+  `addopts = "--doctest-modules"`
+- add taskpy comands for automate lint and mkdocs
+- add comands for save file coverage html
+- add comand for see coverance test
+- final config
+> `[tool.taskipy.tasks]`\
+  `lint = "blue --check --diff . && isort --check -- diff ."`\
+  `docs = "mkdocs serve"`\
+  `pre_test = "task lint"`\
+  `test = "pytest -s -x --cov=flask_api -vv"`\
+  `post_test = "coverage html"`
+
+
+# isort
+- add in `pyproject.toml` config for isort
+>`[tool.isort]`\
+ `profile = "black"`\
+ `line_length = 79`
