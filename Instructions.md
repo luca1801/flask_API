@@ -1,5 +1,8 @@
  # Instructions to create the code Environment
 
+ # vscode config
+ - config vscode to show files first over folder, go to settings.json and put on user profile: `"explorer.sortOrder": "filesFirst"`
+
  ## python, pipx, and poetry
 
 - Add ***python***: install python
@@ -100,7 +103,7 @@
   `addopts = "--doctest-modules"`
 - add taskpy comands for automate lint and mkdocs
 - add comands for save file coverage html
-- add comand for see coverance test
+- add comand for see coverage test
 - final config
 > `[tool.taskipy.tasks]`\
   `lint = "blue --check --diff . && isort --check -- diff ."`\
@@ -109,9 +112,18 @@
   `test = "pytest -s -x --cov=flask_api -vv"`\
   `post_test = "coverage html"`
 
-
 # isort
 - add in `pyproject.toml` config for isort
 >`[tool.isort]`\
  `profile = "black"`\
  `line_length = 79`
+
+ # Start Flask api
+
+ ## install packages necessary
+ - Flask: `poetry add flask`
+ - Flask Restful: `poetry add flask-restful`
+ - flask SQLAlchemy: `poetry add flask-sqlalchemy`
+ - SQLAlchemy: `poetry add sqlalchemy`
+ - client for comunicate with postgresql: `poetry add "psycopg[binary]"`
+

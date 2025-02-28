@@ -1,0 +1,9 @@
+# .blueignore
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.pdf
+*.exe
+*.dll
+.gitignore
