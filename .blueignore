@@ -7,3 +7,4 @@
 *.exe
 *.dll
 .gitignore
+.venv

@@ -123,7 +123,40 @@
  ## install packages necessary
  - Flask: `poetry add flask`
  - Flask Restful: `poetry add flask-restful`
+ - flask Migrate: `poetry add flask-migrate`
  - flask SQLAlchemy: `poetry add flask-sqlalchemy`
  - SQLAlchemy: `poetry add sqlalchemy`
+ - sqlalchemy-utils: `poetry add sqlalchemy-utils`
  - client for comunicate with postgresql: `poetry add "psycopg[binary]"`
+ - python-dotenv: `poetry add python-dotenv`
+ - create a .flaskenv file and add comand for flask app execute: 
+ `FLASK_APP=c:/Users/Lucas/Desktop/python/flask_API/src/run.py`
 
+ ## flask migrate
+ - Flask-Migrate is an extension that handles SQLAlchemy database migrations for Flask applications using Alembic. It allows you to manage database schema changes in a structured and version-controlled way.
+ - In your Flask application, you need to initialize Flask-Migrate with your Flask app and SQLAlchemy database instance. Here’s an example of how to do this in your __init__.py file:
+  > `from flask import Flask` \
+    `from flask_sqlalchemy import SQLAlchemy`\
+    `from flask_migrate import Migrate`\
+    `from flask_restful import Api`\
+    \
+    `flask_api = Flask(__name__)`\
+    `flask_api.config.from_object('config')  # Load configuration from config.py`\
+    \
+    `api = Api(flask_api)`\
+    `db = SQLAlchemy(flask_api)`\
+    `migrate = Migrate(flask_api, db)`\
+    \
+    `from .views import employers_views`\
+    `from .models import employer_model`
+- Create Migration Repository: `flask db init`
+- This will create a migrations directory in your project.
+- Generate an Initial Migration, To generate an initial migration script based on your current database schema, run: `flask db migrate -m "Initial migration"`
+- This will create a new migration script in the versions directory.
+- Apply the Migration, To apply the migration and update your database schema, run: `flask db upgrade`
+- Making Changes to the Database Schema, Whenever you make changes to your SQLAlchemy models, you need to generate a new migration script and apply it.
+> Summary of Commands
+> - Initialize Migration Repository: `flask db init`
+> - Generate Migration Script: `flask db migrate -m "Description"`
+> - Apply Migration: `flask db upgrade`
+> - Rollback Migration: `flask db downgrade`

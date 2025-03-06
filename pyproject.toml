@@ -12,13 +12,16 @@ dependencies = [
     "sqlalchemy (>=2.0.38,<3.0.0)",
     "psycopg[binary] (>=3.2.5,<4.0.0)",
     "flask-restful (>=0.3.10,<0.4.0)",
-    "flask-sqlalchemy (>=3.1.1,<4.0.0)"
+    "flask-sqlalchemy (>=3.1.1,<4.0.0)",
+    "flask-migrate (>=4.1.0,<5.0.0)",
+    "sqlalchemy-utils (>=0.41.2,<0.42.0)",
+    "psycopg2 (>=2.9.10,<3.0.0)",
+    "python-dotenv (>=1.0.1,<2.0.0)"
 ]
 license = "MIT"
 
 [tool.poetry]
 packages = [{include = "flask_api", from = "src"}]
-
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"
@@ -26,7 +29,6 @@ pytest-cov = "^6.0.0"
 blue = "^0.9.1"
 isort = "^6.0.0"
 taskipy = "^1.14.1"
-
 
 [tool.poetry.group.doc.dependencies]
 mkdocs-material = "^9.6.5"
@@ -43,10 +45,28 @@ docs = "mkdocs serve"
 pre_test = "task lint"
 test = "pytest -s -x --cov=flask_api -vv"
 post_test = "coverage html"
+api = "python src/run.py"
+
+[tool.blue]
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | migrations
+)/
+'''
 
 [tool.isort]
 profile = "black"
 line_length = 79
+skip = ["migrations", ".venv", ".gitignore", ".git", "dist", "build", "buck-out", "_build", ".mypy_cache", ".tox", "employer_model.py"]
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

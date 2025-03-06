@@ -11,4 +11,4 @@ class tarefa_list(Resource):
         return 'Hello'
 
 
-api.add_resource(tarefa_list, '/tarefas')
+api.add_resource(tarefa_list, '/employers')
