@@ -178,3 +178,19 @@
 > - Generate Migration Script: `flask db migrate -m "Description"`
 > - Apply Migration: `flask db upgrade`
 > - Rollback Migration: `flask db downgrade`
+
+## 8.3. Flask Marshmallow
+- `Flask-Marshmallow` is an extension of Flask that integrates the Python Web Framework with the Marshmallow Objects serialization library.
+> - Validates http request data
+> - serialize application data to JSON
+> - Makes data serialization more intuitive and easy to understand
+> - Facilitates the creation of a complex database structure
+- `Marshmallow` is a library for converting complex datatypes, such as objects, to and from native Python datatypes.
+-`Flask-Marshmallow` it is a layer of integration between Flask and Marshmallow.
+
+## 8.4. Schemas
+- No Flask-Marshmallow, um "schema" é uma maneira de definir a estrutura de dados que você deseja serializar (converter de um objeto Python para um formato como JSON) ou desserializar (converter de um formato como JSON para um objeto Python). Schemas são usados para validar e transformar dados de entrada e saída.
+- Conceitos Básicos de Schemas:
+> 1. ***Serialização***: Converte objetos Python (como instâncias de modelos) em formatos como JSON para que possam ser enviados em respostas HTTP.
+> 2. Desserialização: Converte dados de entrada (como JSON) em objetos Python, validando e transformando os dados conforme necessário.
+> 3. Validação: verifica se os dados de entrada atendem a certos critérios antes de serem processados ou armazenados.
