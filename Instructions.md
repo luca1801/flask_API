@@ -42,7 +42,14 @@
 > - install: `pipx install ignr`
 >
 > -  Create a ignr file: ignr -p python > .gitignore
--
+
+# Change Branch of Commit
+
+- To change the branch of a commit, you can use the following steps:
+> - Checkout to the target branch: `git checkout target-branch`
+> - Cherry-pick the commit: `git cherry-pick <commit-hash>`
+> - Delete the commit from the original branch if necessary: `git checkout original-branch` and `git reset --hard HEAD~1`
+
 ## Pytest
 
 - The pytest framework makes it easy to write small, readable tests, and can scale to support complex functional testing for applications and libraries. [https://docs.pytest.org/en/stable/](https://docs.pytest.org/en/stable/)
