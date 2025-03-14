@@ -21,7 +21,7 @@ dependencies = [
 license = "MIT"
 
 [tool.poetry]
-packages = [{include = "flask_api", from = "src"}]
+packages = [{include = "flask_api", from = "."}]
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"
@@ -45,7 +45,7 @@ docs = "mkdocs serve"
 pre_test = "task lint"
 test = "pytest -s -x --cov=flask_api -vv"
 post_test = "coverage html"
-api = "python src/run.py"
+api = "python run.py"
 
 [tool.blue]
 exclude = '''

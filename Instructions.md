@@ -1,4 +1,4 @@
- # Instructions to create the code Environment
+# Instructions to create the code Environment
 
  # vscode config
  - config vscode to show files first over folder, go to settings.json and put on user profile: `"explorer.sortOrder": "filesFirst"`
@@ -49,6 +49,17 @@
 > - Checkout to the target branch: `git checkout target-branch`
 > - Cherry-pick the commit: `git cherry-pick <commit-hash>`
 > - Delete the commit from the original branch if necessary: `git checkout original-branch` and `git reset --hard HEAD~1`
+
+# Clone Poetry Project from GitHub
+
+- Clone the repository:
+> - `git clone <repository-url>`
+> - `cd <repository-name>`
+
+- Install project dependencies:
+> - Make sure you have Poetry installed: `pipx install poetry`
+> - Install dependencies: `poetry install`
+> - Activate virtual environment: `poetry shell`
 
 ## Pytest
 

@@ -1,1 +1,1 @@
-FLASK_APP=c:/Users/Lucas/Desktop/python/flask_API/src/run.py
+FLASK_APP=c:/Users/Lucas/Desktop/python/flask_api_v2/run.py
