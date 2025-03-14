@@ -1,9 +1,9 @@
- # Instructions to create the code Environment
+# Instructions to create the code Environment
 
- # vscode config
- - config vscode to show files first over folder, go to settings.json and put on user profile: `"explorer.sortOrder": "filesFirst"`
+# vscode config
+- config vscode to show files first over folder, go to settings.json and put on user profile: `"explorer.sortOrder": "filesFirst"`
 
- ## python, pipx, and poetry
+## python, pipx, and poetry
 
 - Add ***python***: install python
 - Add ***pipx***( Install and Run Python Applications in Isolated Environments): `py -m install pipx`
@@ -42,7 +42,14 @@
 > - install: `pipx install ignr`
 >
 > -  Create a ignr file: ignr -p python > .gitignore
--
+
+# Change Branch of Commit
+
+- To change the branch of a commit, you can use the following steps:
+> - Checkout to the target branch: `git checkout target-branch`
+> - Cherry-pick the commit: `git cherry-pick <commit-hash>`
+> - Delete the commit from the original branch if necessary: `git checkout original-branch` and `git reset --hard HEAD~1`
+
 ## Pytest
 
 - The pytest framework makes it easy to write small, readable tests, and can scale to support complex functional testing for applications and libraries. [https://docs.pytest.org/en/stable/](https://docs.pytest.org/en/stable/)
@@ -118,37 +125,37 @@
  `profile = "black"`\
  `line_length = 79`
 
- # Start Flask api
+# Start Flask api
 
- ## install packages necessary
- - Flask: `poetry add flask`
- - Flask Restful: `poetry add flask-restful`
- - flask Migrate: `poetry add flask-migrate`
- - flask SQLAlchemy: `poetry add flask-sqlalchemy`
- - SQLAlchemy: `poetry add sqlalchemy`
- - sqlalchemy-utils: `poetry add sqlalchemy-utils`
- - client for comunicate with postgresql: `poetry add "psycopg[binary]"`
- - python-dotenv: `poetry add python-dotenv`
- - create a .flaskenv file and add comand for flask app execute: 
- `FLASK_APP=c:/Users/Lucas/Desktop/python/flask_API/src/run.py`
+## install packages necessary
+- Flask: `poetry add flask`
+- Flask Restful: `poetry add flask-restful`
+- flask Migrate: `poetry add flask-migrate`
+- flask SQLAlchemy: `poetry add flask-sqlalchemy`
+- SQLAlchemy: `poetry add sqlalchemy`
+- sqlalchemy-utils: `poetry add sqlalchemy-utils`
+- client for comunicate with postgresql: `poetry add "psycopg[binary]"`
+- python-dotenv: `poetry add python-dotenv`
+- create a .flaskenv file and add comand for flask app execute: 
+`FLASK_APP=c:/Users/Lucas/Desktop/python/flask_API/src/run.py`
 
- ## flask migrate
- - Flask-Migrate is an extension that handles SQLAlchemy database migrations for Flask applications using Alembic. It allows you to manage database schema changes in a structured and version-controlled way.
- - In your Flask application, you need to initialize Flask-Migrate with your Flask app and SQLAlchemy database instance. Here’s an example of how to do this in your __init__.py file:
-  > `from flask import Flask` \
-    `from flask_sqlalchemy import SQLAlchemy`\
-    `from flask_migrate import Migrate`\
-    `from flask_restful import Api`\
-    \
-    `flask_api = Flask(__name__)`\
-    `flask_api.config.from_object('config')  # Load configuration from config.py`\
-    \
-    `api = Api(flask_api)`\
-    `db = SQLAlchemy(flask_api)`\
-    `migrate = Migrate(flask_api, db)`\
-    \
-    `from .views import employers_views`\
-    `from .models import employer_model`
+## flask migrate
+- Flask-Migrate is an extension that handles SQLAlchemy database migrations for Flask applications using Alembic. It allows you to manage database schema changes in a structured and version-controlled way.
+- In your Flask application, you need to initialize Flask-Migrate with your Flask app and SQLAlchemy database instance. Here’s an example of how to do this in your __init__.py file:
+> `from flask import Flask` \
+  `from flask_sqlalchemy import SQLAlchemy`\
+  `from flask_migrate import Migrate`\
+  `from flask_restful import Api`\
+  \
+  `flask_api = Flask(__name__)`\
+  `flask_api.config.from_object('config')  # Load configuration from config.py`\
+  \
+  `api = Api(flask_api)`\
+  `db = SQLAlchemy(flask_api)`\
+  `migrate = Migrate(flask_api, db)`\
+  \
+  `from .views import employers_views`\
+  `from .models import employer_model`
 - Create Migration Repository: `flask db init`
 - This will create a migrations directory in your project.
 - Generate an Initial Migration, To generate an initial migration script based on your current database schema, run: `flask db migrate -m "Initial migration"`
