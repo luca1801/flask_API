@@ -1,22 +1,22 @@
-# import pytest
+import pytest
 
-# from flask_api import create_app
-
-
-# @pytest.fixture
-# def client():
-#     flask_api = create_app()
-#     flask_api.config['TESTING'] = True
-#     with flask_api.app_context():
-#         yield flask_api
+from flask_api import create_app
 
 
-# def test_home_page(client) -> None:
-#     """Test the home page."""
-#     response = client.get('/')
-#     assert response.status_code == 404
-#     # Adjust this based on your actual home page content
-#     # assert b'Welcome' in response.data
+@pytest.fixture
+def client():
+    app = create_app()
+    app.config['TESTING'] = True
+    with app.app_context():
+        yield app.test_client()  # Changed this line to return app.test_client()
+
+
+def test_home_page(client) -> None:
+    """Test the home page."""
+    response = client.get('/')
+    assert response.status_code == 404
+    # Adjust this based on your actual home page content
+    # assert b'Welcome' in response.data
 
 
 # def test_employers_list(client) -> None:
