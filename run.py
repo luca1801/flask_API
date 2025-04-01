@@ -1,6 +1,11 @@
+import os
+
 from flask_api import create_app
 
-flask_api = create_app()
+app = create_app(os.getenv('FLASK_CONFIG', 'default'))
 
 if __name__ == '__main__':
-    flask_api.run()
+    print("Registered routes:")
+    for rule in app.url_map.iter_rules():
+        print(f"{rule.methods} {rule}")
+    app.run()

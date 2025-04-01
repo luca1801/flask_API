@@ -26,3 +26,24 @@ def create_employer(employer):
     db.session.add(new_employer)
     db.session.commit()
     return new_employer
+
+
+def list_employer(employer):
+    # employer = employer
+    if employer == 'all':
+        employer_bd = employer_model.EmployerModel.query.all()
+        return employer_bd
+    else:
+        employer_bd = employer_model.EmployerModel.query.filter_by(
+            nome=employer['name']
+        ).first()
+        return employer_bd
+    
+def check_if_exists(data):
+    if employer_model.EmployerModel.query.filter_by(
+        email=data['email']
+        ).first():
+        return True
+    else:
+        return False
+        
