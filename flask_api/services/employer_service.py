@@ -38,12 +38,12 @@ def list_employer(employer):
             nome=employer['name']
         ).first()
         return employer_bd
-    
+
+
 def check_if_exists(data):
     if employer_model.EmployerModel.query.filter_by(
         email=data['email']
-        ).first():
+    ).first():
         return True
     else:
         return False
-        

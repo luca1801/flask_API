@@ -3,43 +3,44 @@ Responsável por tratar requisições http, validar os dados
 e criar instâncias do objeto.
 """
 # from flask import jsonify, make_response, request
-#from flask_restful import Resource
+# from flask_restful import Resource
 from flask_restx import Resource, fields
-
-# from ..extensions import api
-
 from ..entities import employer
-from ..schemas.employer_schema import (employer_schema, employers_schema)
+from ..schemas.employer_schema import employer_schema, employers_schema
 from ..services import employer_service
 from .namespace import ns
 
-# from ..extensions import api
 
 # Request/response models for Swagger documentation
-employer_model = ns.model('Employer',
-{    
-    'id': fields.Integer(readOnly=True),
-    'name' : fields.String(required=True),
-    'gender' : fields.String(required=True),
-    'birth_date' : fields.Date(required=True),
-    'cpf' : fields.String(required=True),
-    'enterprise' : fields.String(required=True),
-    'role' : fields.String(required=True),
-    'email' : fields.String (required=True),
-    'phone' : fields.String(required=True, nullable=False)
-})
+employer_model = ns.model(
+    'Employer',
+    {
+        'id': fields.Integer(readOnly=True),
+        'name': fields.String(required=True),
+        'gender': fields.String(required=True),
+        'birth_date': fields.Date(required=True),
+        'cpf': fields.String(required=True),
+        'enterprise': fields.String(required=True),
+        'role': fields.String(required=True),
+        'email': fields.String(required=True),
+        'phone': fields.String(required=True, nullable=False),
+    },
+)
 
-employer_post_model = ns.model('EmployerPost',
-{   
-    'name' : fields.String(required=True),
-    'gender' : fields.String(required=True),
-    'birth_date' : fields.Date(required=True),
-    'cpf' : fields.String(required=True),
-    'enterprise' : fields.String(required=True),
-    'role' : fields.String(required=True),
-    'email' : fields.String (required=True),
-    'phone' : fields.String(required=True, nullable=False)
-})
+employer_post_model = ns.model(
+    'EmployerPost',
+    {
+        'name': fields.String(required=True),
+        'gender': fields.String(required=True),
+        'birth_date': fields.Date(required=True),
+        'cpf': fields.String(required=True),
+        'enterprise': fields.String(required=True),
+        'role': fields.String(required=True),
+        'email': fields.String(required=True),
+        'phone': fields.String(required=True, nullable=False),
+    },
+)
+
 
 @ns.route('/')
 class EmployerList(Resource):
@@ -73,7 +74,7 @@ class EmployerList(Resource):
         )
         result = employer_service.create_employer(new_employer)
         return employer_schema.dump(result), 201
-    
+
         # es = employer_schema.EmployerSchema()
         # es = employer_schema()
         # validate = es.validate(request.json)
