@@ -5,11 +5,11 @@ e criar instâncias do objeto.
 # from flask import jsonify, make_response, request
 # from flask_restful import Resource
 from flask_restx import Resource, fields
+
 from ..entities import employer
 from ..schemas.employer_schema import employer_schema, employers_schema
 from ..services import employer_service
 from .namespace import ns
-
 
 # Request/response models for Swagger documentation
 employer_model = ns.model(
