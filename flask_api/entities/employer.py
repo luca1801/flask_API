@@ -6,9 +6,7 @@ class employer:
     Employer class.
     """
 
-    def __init__(
-        self, name, gender, birth_date, cpf, enterprise, role, email, phone
-    ):
+    def __init__(self, name, gender, birth_date, cpf, enterprise, role, email):
         self.__name = name
         self.__gender = gender
         self.__birth_date = birth_date
@@ -16,7 +14,7 @@ class employer:
         self.__enterprise = enterprise
         self.__role = role
         self.__email = email
-        self.__phone = phone
+        # self.__phone = phone
 
     @property
     def name(self):
@@ -74,10 +72,10 @@ class employer:
     def email(self, email):
         self.__email = email
 
-    @property
-    def phone(self):
-        return self.__phone
+    # @property
+    # def phone(self):
+    #     return self.__phone
 
-    @phone.setter
-    def phone(self, phone):
-        self.__phone = phone
+    # @phone.setter
+    # def phone(self, phone):
+    #     self.__phone = phone

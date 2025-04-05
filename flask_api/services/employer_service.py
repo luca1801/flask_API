@@ -21,7 +21,6 @@ def create_employer(employer):
         enterprise=employer.enterprise,
         role=employer.role,
         email=employer.email,
-        phone=employer.phone,
     )
     db.session.add(new_employer)
     db.session.commit()

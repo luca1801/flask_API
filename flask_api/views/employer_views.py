@@ -23,7 +23,6 @@ employer_model = ns.model(
         'enterprise': fields.String(required=True),
         'role': fields.String(required=True),
         'email': fields.String(required=True),
-        'phone': fields.String(required=True, nullable=False),
     },
 )
 
@@ -37,7 +36,6 @@ employer_post_model = ns.model(
         'enterprise': fields.String(required=True),
         'role': fields.String(required=True),
         'email': fields.String(required=True),
-        'phone': fields.String(required=True, nullable=False),
     },
 )
 
@@ -70,7 +68,6 @@ class EmployerList(Resource):
             enterprise=data['enterprise'],
             role=data['role'],
             email=data['email'],
-            phone=data['phone'],
         )
         result = employer_service.create_employer(new_employer)
         return employer_schema.dump(result), 201

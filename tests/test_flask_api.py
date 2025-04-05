@@ -1,16 +1,24 @@
 import os
 
 import pytest
+from flask_sqlalchemy import SQLAlchemy
 
 from flask_api import create_app
+
+db = SQLAlchemy()
 
 
 @pytest.fixture
 def client():
-    app = create_app(os.getenv('FLASK_CONFIG', 'default'))
+    app = create_app(os.getenv('FLASK_CONFIG', 'testing'))
     # app.config['TESTING'] = True
+    # db.init_app(app)
     with app.app_context():
-        yield app.test_client()  # Changed this line to return app.test_client()
+        # yield app.test_client()  # Changed this line to return app.test_client()
+        # db.create_all()  # Cria as tabelas no banco de dados de teste
+        yield app.test_client()
+        # db.session.remove()
+        # db.drop_all()  # Limpa o banco de dados após os testes
 
 
 def test_home_page(client) -> None:

@@ -41,11 +41,14 @@ def create_app(config_name='default'):
     from config import config
 
     app.config.from_object(config[config_name])
+    print(config_name)
     # app.config['ERROR_404_HELP'] = False
 
     db.init_app(app)
     marsh.init_app(app)
-    migrate.init_app(app, db)
+    if config_name != 'testing':
+        migrate.init_app(app, db)
+        print('migrate started')
     api.init_app(app)
 
     # Register API views(resources)
