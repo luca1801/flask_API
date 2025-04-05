@@ -31,7 +31,7 @@ from .views import init_api
 # migrate = Migrate()
 
 
-def create_app(config_name='default'):
+def create_app(config_name):
     """
     Create a Flask application using the app factory pattern.
     """
