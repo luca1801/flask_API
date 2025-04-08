@@ -18,7 +18,8 @@ dependencies = [
     "flask-marshmallow (>=1.3.0,<2.0.0)",
     "marshmallow-sqlalchemy (>=1.4.1,<2.0.0)",
     "flask-restx (>=1.3.0,<2.0.0)",
-    "flask-migrate (==4.0.7)"
+    "flask-migrate (==4.0.7)",
+    "pytest-env (>=1.1.5,<2.0.0)"
 ]
 license = "MIT"
 
@@ -44,7 +45,7 @@ addopts = "--doctest-modules"
 [tool.taskipy.tasks]
 lint = "blue --check --diff . && isort --check -- diff ."
 docs = "mkdocs serve"
-pre_test = "task lint"
+# pre_test = "task lint"
 test = "pytest -s -x --cov=flask_api -vv"
 post_test = "coverage html"
 api = "python run.py"

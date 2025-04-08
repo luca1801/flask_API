@@ -1,9 +1,11 @@
 from flask_marshmallow import Marshmallow
-from flask_migrate import Migrate
 
 # from flask_restful import Api
 from flask_restx import Api
 from flask_sqlalchemy import SQLAlchemy
+
+# from flask_migrate import Migrate
+
 
 db = SQLAlchemy()
 api = Api(
@@ -13,4 +15,4 @@ api = Api(
     doc='/docs',
 )
 marsh = Marshmallow()
-migrate = Migrate()
+# migrate = Migrate()

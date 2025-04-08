@@ -2,7 +2,7 @@ import os
 
 from flask_api import create_app
 
-app = create_app(os.getenv('FLASK_CONFIG', 'development'))
+app = create_app('development')
 
 if __name__ == '__main__':
     print('Registered routes:')

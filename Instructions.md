@@ -178,7 +178,7 @@
 > Summary of Commands
 > - Initialize Migration Repository: `flask db init`
 > - Generate Migration Script: `flask db migrate -m "Description"`
-> - Apply Migration: `flask db upgrade`
+> - Apply Migration: `flask db upgrade` 
 > - Rollback Migration: `flask db downgrade`
 > - Show the revision denoted by the given symbol: `flask db show <revision>`
 > - Shows the list of migrations. If a range isn’t given then the entire history is shown:

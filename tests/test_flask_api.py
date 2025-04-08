@@ -1,9 +1,22 @@
+
 import os
 
 import pytest
 
+# from alembic.migration import MigrationContext
+from dotenv import load_dotenv
+
 from flask_api import create_app, db
 
+# from sqlalchemy import create_engine
+
+# os.environ['FLASK_CONFIG'] = 'testing'
+# os.putenv('FLASK_CONFIG', 'testing')
+# print(f"FLASK_CONFIG: {os.getenv('FLASK_CONFIG')}")
+
+load_dotenv('.env')
+
+# print(f"FLASK_CONFIG: {os.getenv('FLASK_CONFIG')}")
 # from flask_sqlalchemy import SQLAlchemy
 
 
@@ -12,13 +25,29 @@ from flask_api import create_app, db
 
 @pytest.fixture
 def client():
-    appp = create_app(os.getenv('FLASK_CONFIG', 'testing'))
+    # FLASK_CONFIG = 'testing'
+    # os.environ['FLASK_CONFIG'] = 'testing'
+    # os.putenv('FLASK_CONFIG', 'testing')
+    app = create_app('testing')
+    # appp.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
+    #     'FLASK_DATABASE_TESTING'
+    # )
+    # app.config.update(
+    #     {
+    #         'TESTING': True,
+    #         'SQLALCHEMY_DATABASE_URI': os.getenv('FLASK_DATABASE_TESTING'),
+    #     }
+    # )
+    # print(app.config['SQLALCHEMY_DATABASE_URI'])
+    # appp.config['FLASK_CONFIG'] = 'testing'
     # app.config['TESTING'] = True
     # db.init_app(app)
-    with appp.app_context():
+    # context = MigrationContext.configure(appp.engine)
+    # current_rev = context.get_current_revision()
+    with app.app_context():
         # yield app.test_client()  # Changed this line to return app.test_client()
         # db.create_all()  # Cria as tabelas no banco de dados de teste
-        yield appp.test_client()
+        yield app.test_client()
         db.session.remove()
         # db.drop_all()  # Limpa o banco de dados após os testes
         db.session.close()
@@ -46,13 +75,13 @@ def test_add_employer_post_method(client):
 
     # Dados do funcionário a ser adicionado
     new_employer_data = {
-        'name': 'John Doe',
-        'gender': 'Male',
+        'name': 'Mary Doe',
+        'gender': 'Female',
         'birth_date': '1990-01-01',
-        'cpf': '12345678901',
+        'cpf': '12345678125',
         'enterprise': 'Tech Corp',
-        'role': 'Developer',
-        'email': 'johndoe@example.com',
+        'role': 'Economist',
+        'email': 'maryd@example.com',
     }
 
     # Realiza a requisição POST para adicionar o funcionário

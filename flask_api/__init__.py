@@ -2,14 +2,16 @@
 """
 Flask API module.
 """
-
+import os
 from flask import Flask
 
 # from flask_sqlalchemy import SQLAlchemy
 # from flask_migrate import Migrate
-from .extensions import db, api, marsh, migrate
+from .extensions import db, api, marsh   # migrate
 from .views.employer_views import EmployerList
 from .views import init_api
+
+# from config import config
 
 # from flask_restful import Api
 # from flask_marshmallow import Marshmallow
@@ -31,7 +33,7 @@ from .views import init_api
 # migrate = Migrate()
 
 
-def create_app(config_name):
+def create_app(config_name=None):
     """
     Create a Flask application using the app factory pattern.
     """
@@ -41,14 +43,37 @@ def create_app(config_name):
     from config import config
 
     app.config.from_object(config[config_name])
+    print('config loaded')
     print(config_name)
+    if config_name == 'testing':
+        # os.environ['FLASK_CONFIG'] = 'testing'
+        # app.config.update(
+        #     {
+        #         'TESTING': True,
+        #         'SQLALCHEMY_DATABASE_URI': os.getenv('FLASK_DATABASE_TEST')
+        #         # f'postgresql+psycopg2://{'kiki'}:{'kiki'}@{'localhost'}/{'flask_api_test'}'
+        #     }
+        # )
+        # app.config['FLASK_CONFIG'] = 'testing'
+        # migrate.init_app(app, db)
+        print('testing started')
+    elif config_name == 'development':
+        # os.environ['FLASK_CONFIG'] = 'development'
+        # app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
+        #     'FLASK_DATABASE_DEVELOPMENT'
+        # )
+        print('development started')
+    else:
+        raise ValueError(
+            "FLASK_CONFIG must be either 'development' or 'testing'"
+        )
+    # migrate.init_app(app, db)
+
     # app.config['ERROR_404_HELP'] = False
 
     db.init_app(app)
     marsh.init_app(app)
-    if config_name != 'testing':
-        migrate.init_app(app, db)
-        print('migrate started')
+
     api.init_app(app)
 
     # Register API views(resources)
@@ -58,10 +83,10 @@ def create_app(config_name):
 
     # api.add_resource(EmployerList, '/')
 
-    with app.app_context():
-        # api.add_resource(EmployerList, '/')
-        # init_api(api)
-        db.create_all()
+    # with app.app_context():
+    # api.add_resource(EmployerList, '/')
+    # init_api(api)
+    # db.create_all()
 
     # from .models import employer_model
     # from .views import employer_views
