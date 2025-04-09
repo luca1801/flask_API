@@ -7,9 +7,8 @@ from flask import Flask
 
 # from flask_sqlalchemy import SQLAlchemy
 # from flask_migrate import Migrate
-from .extensions import db, api, marsh   # migrate
-from .views.employer_views import EmployerList
-from .views import init_api
+from .extensions import db, api, marsh, migrate
+
 
 # from config import config
 
@@ -45,24 +44,14 @@ def create_app(config_name=None):
     app.config.from_object(config[config_name])
     print('config loaded')
     print(config_name)
+    db.init_app(app)
+    marsh.init_app(app)
+    api.init_app(app)
     if config_name == 'testing':
-        # os.environ['FLASK_CONFIG'] = 'testing'
-        # app.config.update(
-        #     {
-        #         'TESTING': True,
-        #         'SQLALCHEMY_DATABASE_URI': os.getenv('FLASK_DATABASE_TEST')
-        #         # f'postgresql+psycopg2://{'kiki'}:{'kiki'}@{'localhost'}/{'flask_api_test'}'
-        #     }
-        # )
-        # app.config['FLASK_CONFIG'] = 'testing'
-        # migrate.init_app(app, db)
         print('testing started')
     elif config_name == 'development':
-        # os.environ['FLASK_CONFIG'] = 'development'
-        # app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
-        #     'FLASK_DATABASE_DEVELOPMENT'
-        # )
         print('development started')
+        migrate.init_app(app, db)
     else:
         raise ValueError(
             "FLASK_CONFIG must be either 'development' or 'testing'"
@@ -71,10 +60,8 @@ def create_app(config_name=None):
 
     # app.config['ERROR_404_HELP'] = False
 
-    db.init_app(app)
-    marsh.init_app(app)
-
-    api.init_app(app)
+    from .views.employer_views import EmployerList
+    from .views import init_api
 
     # Register API views(resources)
     init_api(api)
